@@ -8,7 +8,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     # Ajusta esta ruta según donde termine viviendo la clase Vuelo
     # (por ejemplo: from ..modelos.vuelo import Vuelo)
-    from ..modelos.vuelo import Vuelo
+    from ..modelos.vuelo import Vuelo  # type: ignore
 
 
 class ConsultasVuelos:

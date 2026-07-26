@@ -33,10 +33,9 @@ reportes y permitir consultarlos después.
 Para que el código fuera fácil de entender, de dividir entre el equipo y de
 mantener, se separó en capas según lo que hace cada parte:
 
-- **Modelos** (`Aeropuerto.py`, `torre_control.py`): son las clases que
-  solo guardan información, sin lógica compleja — `Pasajero`, `Documento`,
-  `Equipaje`, `Piloto`, `Aeronave`, `Vuelo`. Representan los datos "puros"
-  del negocio.
+- **Modelos** : son las clases que solo guardan información, 
+  sin lógica compleja — `Pasajero`, `Documento`, `Equipaje`, `Piloto`,
+  `Aeronave`, `Vuelo`. Representan los datos "puros" del negocio.
 - **Validación** (`ValidadorPasajero`, `ControladorAereo`): aquí vive la
   lógica que decide si algo se aprueba o se rechaza. Se separó de los
   modelos para que, si mañana cambian las reglas (por ejemplo, subir el
@@ -71,17 +70,22 @@ script de entrada principal (`run.py`):
 ```text
 Proyecto-Aeropuerto-POO/
 ├── Proyecto_aeropuerto/
-│   ├── main.py                     # Arranca el programa y maneja el menú
-│   ├── Consola.py                  # Funciones para leer y validar datos del usuario
-│   ├── Aeropuerto.py                # Pasajero, Documento, Equipaje, ValidadorPasajero
-│   ├── torre_control.py             # Piloto, Aeronave, Vuelo, ControladorAereo
+│   ├── __init__.py
+│   ├── main.py                      # Arranca el programa y maneja el menú
+│   ├── Consola.py                   # Funciones para leer y validar datos del usuario
+│   ├── modelos.py                   # Pasajero, Documento, Equipaje, Piloto, Aeronave, Vuelo
+│   ├── validaciones.py              # ControladorAereo, ValidadorPasajero
 │   ├── Sistemas/
+│   │   ├── __init__.py
 │   │   ├── sistema_aeropuerto.py    # Registro de pasajeros de principio a fin
 │   │   └── sistema_torre_control.py # Registro de vuelos y cola de prioridad
 │   ├── consultas/
+│   │   ├── __init__.py
 │   │   ├── sistema_consultas.py     # Búsquedas, filtros y reportes de pasajeros
 │   │   └── consultas_vuelos.py      # Búsquedas, filtros y reportes de vuelos
 │   └── reportes/                    # Reportes .txt generados al ejecutar el programa
+│       ├── Aeropuerto/reporte_aeropuerto.txt
+│       └── TorreControl/reporte_torre_control.txt
 ├── run.py                           # Archivo que se ejecuta para iniciar el sistema
 ├── requirements.txt
 └── README.md

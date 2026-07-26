@@ -2,17 +2,23 @@
   REPORTE FINAL - SISTEMA AEROPUERTO
 ============================================================
 
-Total registrados : 0
-Aprobados         : 0
-Rechazados        : 0
-Dinero recaudado  : $0
+Total registrados : 2
+Aprobados         : 1
+Rechazados        : 1
+Dinero recaudado  : $420,000
 
 ────────────────────────────────────────────────────────────
 PASAJEROS APROBADOS
 ────────────────────────────────────────────────────────────
+  1. Cristian Duarte           → Turquia              cargo: $420,000
 
 ────────────────────────────────────────────────────────────
 PASAJEROS RECHAZADOS
 ────────────────────────────────────────────────────────────
+  1. Daniel -Al-alhil           motivo: 
+- Menor de edad
+- Pasaporte vencido
+- No realizo check-in
+- Boleto invalido
 
 ============================================================

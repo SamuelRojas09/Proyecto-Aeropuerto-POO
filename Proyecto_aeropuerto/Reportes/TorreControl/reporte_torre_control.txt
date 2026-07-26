@@ -2,13 +2,14 @@
   REPORTE TORRE DE CONTROL
 ============================================================
 
-Total vuelos registrados : 0
-Autorizados              : 0
+Total vuelos registrados : 1
+Autorizados              : 1
 Denegados                : 0
 
 ------------------------------------------------------------
 VUELOS AUTORIZADOS
 ------------------------------------------------------------
+  1. ASD41      Colombia        -> Turquia         | 1 pax | Piloto: Samuel Diaz
 
 ------------------------------------------------------------
 VUELOS DENEGADOS
