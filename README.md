@@ -7,6 +7,20 @@ paquetes por responsabilidad.
 
 ---
 
+## Tabla de contenido
+
+- [Descripción del problema](#descripción-del-problema)
+- [Cómo se abordó el problema](#cómo-se-abordó-el-problema)
+- [Arquitectura y Estructura del Proyecto](#arquitectura-y-estructura-del-proyecto)
+- [Diagrama de clases](#diagrama-de-clases)
+- [Tecnologías y Conceptos Aplicados](#tecnologías-y-conceptos-aplicados)
+- [Instalación y Ejecución](#instalación-y-ejecución)
+- [Casos de Uso Demostrados](#casos-de-uso-demostrados)
+- [Reglas de negocio principales](#reglas-de-negocio-principales)
+- [Solución de problemas comunes](#solución-de-problemas-comunes)
+
+---
+
 ## Descripción del problema
 
 Un aeropuerto necesita controlar dos procesos antes de que un avión pueda
@@ -93,7 +107,194 @@ Proyecto-Aeropuerto-POO/
 
 ### Diagrama de clases
 
+```mermaid
+classDiagram
 
+class Consola {
+    #_leer_texto(mensaje: str) str
+    #_leer_texto_no_vacio(mensaje: str) str
+    #_leer_entero(mensaje: str) int
+    #_leer_decimal(mensaje: str) float
+    #_leer_booleano(mensaje: str) bool
+    #_validacion(mensaje: str, patron: str|list) str
+    #_leer_decimal_positivo(mensaje: str) float
+    #_leer_prioridad() int
+    #_leer_entero_positivo(mensaje: str) int
+}
+
+class SistemaAeropuerto {
+    +aprobados: list~tuple~
+    +rechazados: list~tuple~
+    +consola: Consola
+    +validador: ValidadorPasajero
+    +registrar_pasajero() None
+    +mostrar_reporte() None
+}
+
+class ValidadorPasajero {
+    +PAISES_CON_VISA: list~str~$
+    +validar_pasajero(pasajero: Pasajero, documento: Documento, equipaje: Equipaje) tuple
+    +validar_equipaje(equipaje: Equipaje) None
+}
+
+class Pasajero {
+    +nombre: str
+    +edad: int
+    +nacionalidad: str
+    +tipo_sangre: str
+    +telefono: str
+    +correo: str
+    +destino: str
+}
+
+class Documento {
+    +numero_pasaporte: str
+    +pasaporte_vigente: bool
+    +tiene_visa: bool
+    +visa_vigente: bool
+    +check_in_realizado: bool
+    +boleto_valido: bool
+}
+
+class Equipaje {
+    +cantidad_maletas: int
+    +peso_total: float
+    +largo: float
+    +ancho: float
+    +alto: float
+    +elementos_peligrosos: bool
+    +material_inflamable: bool
+    +armas: bool
+    +maletas: list
+    +cargo_adicional: float
+    +en_bodega: bool
+}
+
+class SistemaTorreControl {
+    +pasajeros_aprobados: list~tuple~
+    +vuelos: list~Vuelo~
+    +controlador: ControladorAereo
+    +cola_prioridad: ColaPrioridadVuelos
+    #_codigo_vuelo_repetido(codigo: str) bool
+    #_matricula_repetida(matricula: str) bool
+    +registrar_vuelo() None
+    +procesar_cola_despegues() None
+    +exportar_reporte() None
+}
+
+class ColaPrioridadVuelos {
+    -_cola: PriorityQueue
+    -_contador: int
+    +encolar(solicitud: SolicitudDespegue, prioridad: int) None
+    +siguiente() SolicitudDespegue
+    +esta_vacia() bool
+}
+
+class ControladorAereo {
+    +HORAS_MINIMAS: int$
+    +verificar_piloto(piloto: Piloto) tuple
+    +verificar_aeronave(aeronave: Aeronave) tuple
+    +verificar_capacidad(vuelo: Vuelo, aeronave: Aeronave) tuple
+    +verificar_clima(clima_favorable: bool) tuple
+    +verificar_pista(pista_libre: bool) tuple
+    +verificar_combustible(combustible_suficiente: bool) tuple
+    +autorizar_despegue(vuelo: Vuelo, piloto: Piloto, aeronave: Aeronave, clima_favorable: bool, pista_libre: bool, combustible_suficiente: bool) tuple
+}
+
+class Piloto {
+    +nombre: str
+    +licencia: str
+    +horas_vuelo: int
+    +disponible: bool
+}
+
+class Aeronave {
+    +matricula: str
+    +modelo: str
+    +capacidad: int
+    +disponible: bool
+}
+
+class Vuelo {
+    +codigo: str
+    +origen: str
+    +destino: str
+    +cantidad_pasajeros: int
+    +estado: str
+    +piloto: Piloto
+    +aeronave: Aeronave
+}
+
+class SolicitudDespegue {
+    +vuelo: Vuelo
+    +piloto: Piloto
+    +aeronave: Aeronave
+    +clima_favorable: bool
+    +pista_libre: bool
+    +combustible_suficiente: bool
+}
+
+class SistemaConsultas {
+    +aprobados: list
+    +rechazados: list
+    +mostrar_aprobados() None
+    +mostrar_rechazados() None
+    +buscar_pasajero() None
+    #_mostrar_ficha_aprobado(pasajero, equipaje) None
+    #_mostrar_ficha_rechazado(pasajero, motivo: str) None
+    +filtrar_por_destino() None
+    +filtrar_por_nacionalidad() None
+    +filtrar_por_edad() None
+    +mostrar_bodega() None
+    +mostrar_sin_cargo() None
+    +mostrar_estadisticas() None
+    +mostrar_destinos() None
+    +exportar_reporte() None
+}
+
+class ConsultasVuelos {
+    +vuelos: list~Vuelo~
+    +mostrar_todos() None
+    +mostrar_autorizados() None
+    +mostrar_denegados() None
+    +buscar_vuelo() None
+    +filtrar_por_destino() None
+    +mostrar_estadisticas() None
+}
+
+%% ── Herencia ──
+SistemaTorreControl --|> Consola
+
+%% ── Composición (crea y es dueño del objeto) ──
+SistemaAeropuerto *-- "1" Consola
+SistemaAeropuerto *-- "1" ValidadorPasajero
+SistemaTorreControl *-- "1" ControladorAereo
+SistemaTorreControl *-- "1" ColaPrioridadVuelos
+
+%% ── Agregación (guarda referencias, no crea el ciclo de vida completo) ──
+SistemaAeropuerto o-- "0..*" Pasajero : aprobados/rechazados
+SistemaAeropuerto o-- "0..*" Equipaje : aprobados
+SistemaTorreControl o-- "0..*" Vuelo : vuelos
+SistemaConsultas o-- "0..*" Pasajero : aprobados/rechazados
+SistemaConsultas o-- "0..*" Equipaje : aprobados
+ConsultasVuelos o-- "0..*" Vuelo : vuelos
+
+%% ── Dependencia (usa el objeto sin ser dueño) ──
+ValidadorPasajero ..> Pasajero : valida
+ValidadorPasajero ..> Documento : valida
+ValidadorPasajero ..> Equipaje : valida
+ControladorAereo ..> Piloto : verifica
+ControladorAereo ..> Aeronave : verifica
+ControladorAereo ..> Vuelo : verifica
+ColaPrioridadVuelos o-- "0..*" SolicitudDespegue : encola
+
+%% ── Asociación 1 a 1 ──
+SolicitudDespegue --> "1" Vuelo
+SolicitudDespegue --> "1" Piloto
+SolicitudDespegue --> "1" Aeronave
+Vuelo --> "0..1" Piloto : piloto
+Vuelo --> "0..1" Aeronave : aeronave
+```
 
 ## Tecnologías y Conceptos Aplicados
 
