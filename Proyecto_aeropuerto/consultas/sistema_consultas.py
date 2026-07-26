@@ -279,9 +279,12 @@ class SistemaConsultas:
         # proyecto_aeropuerto/consultas/sistema_consultas.py
         #   -> parent        = consultas/
         #   -> parent.parent = proyecto_aeropuerto/
-        # Así el reporte siempre cae en proyecto_aeropuerto/reportes/,
+        # Así el reporte siempre cae en proyecto_aeropuerto/Reportes/,
         # sin importar desde qué carpeta se ejecute el programa.
-        carpeta_reportes = Path(__file__).resolve().parent.parent / "reportes"
+        # El reporte debe quedar dentro de Reportes/Aeropuerto.
+        carpeta_reportes = (
+            Path(__file__).resolve().parent.parent / "Reportes" / "Aeropuerto"
+        )
         carpeta_reportes.mkdir(parents=True, exist_ok=True)
         nombre_archivo = carpeta_reportes / "reporte_aeropuerto.txt"
 

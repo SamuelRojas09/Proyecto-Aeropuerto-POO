@@ -63,3 +63,66 @@ class Equipaje:
         self.maletas = maletas if maletas is not None else []
         self.cargo_adicional = 0.0
         self.en_bodega = False
+
+
+class Piloto:
+    def __init__(
+        self,
+        nombre: str,
+        licencia: str,
+        horas_vuelo: int,
+        disponible: bool,
+    ) -> None:
+        self.nombre = nombre
+        self.licencia = licencia
+        self.horas_vuelo = horas_vuelo
+        self.disponible = disponible
+
+
+class Aeronave:
+    def __init__(
+        self,
+        matricula: str,
+        modelo: str,
+        capacidad: int,
+        disponible: bool,
+    ) -> None:
+        self.matricula = matricula
+        self.modelo = modelo
+        self.capacidad = capacidad
+        self.disponible = disponible
+
+
+class Vuelo:
+    def __init__(
+        self,
+        codigo: str,
+        origen: str,
+        destino: str,
+        cantidad_pasajeros: int,
+    ) -> None:
+        self.codigo = codigo
+        self.origen = origen
+        self.destino = destino
+        self.cantidad_pasajeros = cantidad_pasajeros
+        self.estado = "Pendiente"
+        self.piloto: Piloto | None = None
+        self.aeronave: Aeronave | None = None
+
+
+class SolicitudDespegue:
+    def __init__(
+        self,
+        vuelo: Vuelo,
+        piloto: Piloto,
+        aeronave: Aeronave,
+        clima_favorable: bool,
+        pista_libre: bool,
+        combustible_suficiente: bool,
+    ) -> None:
+        self.vuelo = vuelo
+        self.piloto = piloto
+        self.aeronave = aeronave
+        self.clima_favorable = clima_favorable
+        self.pista_libre = pista_libre
+        self.combustible_suficiente = combustible_suficiente

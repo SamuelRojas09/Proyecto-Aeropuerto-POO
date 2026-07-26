@@ -1,11 +1,12 @@
 from ..Consola import Consola
-from ..torre_control import (
-    ControladorAereo,
+from ..validaciones import ControladorAereo
+from ..modelos import (
     Piloto,
     Vuelo,
     Aeronave,
     SolicitudDespegue,
 )
+
 from pathlib import Path
 import queue
 
@@ -76,7 +77,7 @@ class SistemaTorreControl(Consola):
         print("\nDATOS DEL PILOTO")
         nombre_piloto = self._leer_texto_no_vacio("Nombre: ")
         licencia = self._leer_texto_no_vacio("Licencia: ")
-        horas_vuelo = self._leer_entero_positivo("Horas de vuelo: ")
+        horas_vuelo = self._leer_entero_positivo("Horas de vuelo (500 horas mínimas): ")
         piloto_disponible = self._leer_booleano("Disponible? (s/n): ")
 
         print("\nDATOS DE LA AERONAVE")
