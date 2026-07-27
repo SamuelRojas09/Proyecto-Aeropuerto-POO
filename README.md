@@ -451,6 +451,10 @@ normales, sin importar el orden en que fueron registrados.
   entorno virtual esté activado.
 - **El programa no reconoce `python`**: en algunos sistemas el comando se
   llama `python3` en vez de `python`. Prueba `python3 run.py`.
+  Esto pasa porque en Linux / Mac se requiere usar explicitamente la versión moderna
+  con el comando `python3`; si solo se escribe `python`, en estos sistemas operativos se ejecutará
+  la version antigua de python (python2), mientras que en Windows, no hay problema al usar
+  solamente `python`.
 - **No aparece la carpeta `Reportes/`**: se crea automáticamente la
   primera vez que usas la opción de exportar reporte desde el menú; no
   hace falta crearla a mano.
