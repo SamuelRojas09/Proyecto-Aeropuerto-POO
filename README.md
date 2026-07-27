@@ -262,6 +262,12 @@ class ConsultasVuelos {
     +mostrar_estadisticas() None
 }
 
+class MenuInterfaz {
+    +MENU: str
+    +ACCIONES: dict
+    +Opcion_menu() None
+}
+
 %% ── Herencia ──
 SistemaTorreControl --|> Consola
 
@@ -278,6 +284,8 @@ SistemaTorreControl o-- "0..*" Vuelo : vuelos
 SistemaConsultas o-- "0..*" Pasajero : aprobados/rechazados
 SistemaConsultas o-- "0..*" Equipaje : aprobados
 ConsultasVuelos o-- "0..*" Vuelo : vuelos
+MenuInterfaz o-- "0..*" SistemaConsultas : acciones
+MenuInterfaz o-- "0..*" ConsultasVuelos : acciones
 
 %% ── Dependencia (usa el objeto sin ser dueño) ──
 ValidadorPasajero ..> Pasajero : valida
