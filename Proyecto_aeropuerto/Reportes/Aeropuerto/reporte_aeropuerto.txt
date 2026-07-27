@@ -5,20 +5,23 @@
 Total registrados : 2
 Aprobados         : 1
 Rechazados        : 1
-Dinero recaudado  : $420,000
+Dinero recaudado  : $1,050,000
 
 ────────────────────────────────────────────────────────────
 PASAJEROS APROBADOS
 ────────────────────────────────────────────────────────────
-  1. Cristian Duarte           → Turquia              cargo: $420,000
+  1. Daniel Barreto            → Cananda              cargo: $1,050,000
 
 ────────────────────────────────────────────────────────────
 PASAJEROS RECHAZADOS
 ────────────────────────────────────────────────────────────
-  1. Daniel -Al-alhil           motivo: 
+  1. Cristian Duarte            motivo: 
 - Menor de edad
 - Pasaporte vencido
 - No realizo check-in
 - Boleto invalido
+- Transporta armas
+- Material inflamable
+- Elementos peligrosos
 
 ============================================================

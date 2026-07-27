@@ -152,9 +152,6 @@ class SistemaTorreControl(Consola):
             print("-" * 60)
 
     def exportar_reporte(self) -> None:
-        carpeta_paquete = Path("Proyecto_aeropuerto")
-        carpeta_Reportes = Path("Reportes")
-        carpeta_torre = Path("reporte_torrecontrol")
         autorizados = [v for v in self.vuelos if v.estado == "Autorizado"]
         denegados = [v for v in self.vuelos if v.estado == "Denegado"]
 
@@ -188,10 +185,18 @@ class SistemaTorreControl(Consola):
             )
 
         lineas += ["", "=" * 60]
-        carpeta_Reportes = carpeta_paquete / "Reportes"
-        carpeta_torre = carpeta_Reportes / "TorreControl"
-        carpeta_torre.mkdir(parents=True, exist_ok=True)
-        nombre_archivo = carpeta_torre / "reporte_torre_control.txt"
+
+        # sistema_torre_control.py está en Proyecto_aeropuerto/Sistemas/
+        #   -> parent        = Sistemas/
+        #   -> parent.parent = Proyecto_aeropuerto/
+        # Así el reporte siempre cae en Proyecto_aeropuerto/Reportes/,
+        # sin importar desde qué carpeta se ejecute el programa.
+        carpeta_reportes = (
+            Path(__file__).resolve().parent.parent / "Reportes" / "TorreControl"
+        )
+        carpeta_reportes.mkdir(parents=True, exist_ok=True)
+        nombre_archivo = carpeta_reportes / "reporte_torre_control.txt"
+
         try:
             with open(nombre_archivo, "w", encoding="utf-8") as f:
                 f.write("\n".join(lineas))
