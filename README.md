@@ -15,6 +15,8 @@ paquetes por responsabilidad.
 - [Diagrama de clases](#diagrama-de-clases)
 - [Tecnologías y Conceptos Aplicados](#tecnologías-y-conceptos-aplicados)
 - [Instalación y Ejecución](#instalación-y-ejecución)
+  -[Opción A: Windows](#opción-a-windows)
+  -[Opción B: Linux/ macOS](#opción-b-linux-macos)
 - [Casos de Uso Demostrados](#casos-de-uso-demostrados)
 - [Reglas de negocio principales](#reglas-de-negocio-principales)
 - [Solución de problemas comunes](#solución-de-problemas-comunes)
@@ -97,7 +99,7 @@ Proyecto-Aeropuerto-POO/
 │   │   ├── __init__.py
 │   │   ├── sistema_consultas.py     # Búsquedas, filtros y reportes de pasajeros
 │   │   └── consultas_vuelos.py      # Búsquedas, filtros y reportes de vuelos
-│   └── reportes/                    # Reportes .txt generados al ejecutar el programa
+│   └── Reportes/                    # Reportes .txt generados al ejecutar el programa
 │       ├── Aeropuerto/reporte_aeropuerto.txt
 │       └── TorreControl/reporte_torre_control.txt
 ├── run.py                           # Archivo que se ejecuta para iniciar el sistema
@@ -337,31 +339,58 @@ instalado.
    cd Proyecto-Aeropuerto-POO
    ```
 
-2. **Crear un entorno virtual** (para instalar dependencias sin afectar el
+Luego de este paso, depende de cual es el sistema operativo que generalmente uses:
+
+### Opción A: Windows
+
+1. **Crear un entorno virtual** (para instalar dependencias sin afectar el
    resto de tu computador):
    ```bash
-   python3 -m venv venv
+   python -m venv venv
    ```
 
-3. **Activarlo:**
-   - Linux / macOS:
-     ```bash
-     source venv/bin/activate
-     ```
+2. **Activarlo:**
    - Windows (PowerShell):
      ```powershell
      venv\Scripts\Activate.ps1
      ```
 
-4. **Instalar dependencias:**
+3. **Instalar dependencias:**
    ```bash
    pip install -r requirements.txt
    ```
 
-5. **Ejecutar el programa:**
+
+4. **Ejecutar el programa:**
    ```bash
    python run.py
    ```
+
+### Opción B: Linux/ macOS
+
+
+1. **Crear un entorno virtual** (para instalar dependencias sin afectar el
+   resto de tu computador):
+   ```bash
+   python3 -m venv venv
+   ```
+
+2. **Activarlo:**
+   - Linux / macOS:
+     ```bash
+     source venv/bin/activate
+     ```
+
+3. **Instalar dependencias:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Ejecutar el programa:**
+   ```bash
+   python run.py
+   ```
+
 
 ## Casos de Uso Demostrados
 
@@ -388,7 +417,7 @@ Al correr el programa, se pueden probar los siguientes flujos:
    frecuente, dinero recaudado, etc.).
 6. **Exportación de reportes:** se puede generar un archivo `.txt` con el
    resumen final de pasajeros aprobados/rechazados y otro con el resumen
-   de vuelos autorizados/denegados, guardados en `reportes/`.
+   de vuelos autorizados/denegados, guardados en `Reportes/`.
 
 ---
 
@@ -422,7 +451,11 @@ normales, sin importar el orden en que fueron registrados.
   entorno virtual esté activado.
 - **El programa no reconoce `python`**: en algunos sistemas el comando se
   llama `python3` en vez de `python`. Prueba `python3 run.py`.
-- **No aparece la carpeta `reportes/`**: se crea automáticamente la
+  Esto pasa porque en Linux / Mac se requiere usar explicitamente la versión moderna
+  con el comando `python3`; si solo se escribe `python`, en estos sistemas operativos se ejecutará
+  la version antigua de python (python2), mientras que en Windows, no hay problema al usar
+  solamente `python`.
+- **No aparece la carpeta `Reportes/`**: se crea automáticamente la
   primera vez que usas la opción de exportar reporte desde el menú; no
   hace falta crearla a mano.
 
