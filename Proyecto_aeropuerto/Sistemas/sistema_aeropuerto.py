@@ -3,7 +3,8 @@ from ..validaciones import ValidadorPasajero
 from ..Consola import Consola
 
 
-# Esta clase representa el sistema de control de pasajeros en un aeropuerto. Permite registrar pasajeros, validar sus documentos y equipaje.
+# Esta clase representa el sistema de control de pasajeros en un aeropuerto.
+# Permite registrar pasajeros, validar sus documentos y equipaje.
 # Generando un reporte final indicando los pasajeros aprobados y rechazados.
 class SistemaAeropuerto:
     # ──────Validación de datos de entrada del usuario────────────────────────
